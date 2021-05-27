@@ -1,4 +1,4 @@
-package cardGame;
+package cardGameExceptions;
 
 public class StackOverflowException extends CardGameExceptions {
 
