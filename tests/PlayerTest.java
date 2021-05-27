@@ -1,4 +1,6 @@
 import cardGame.*;
+import cardGameExceptions.InvalidCardException;
+import cardGameExceptions.StackUnderflowException;
 import org.junit.jupiter.api.Test;
 
 import static cardGame.Faces.*;
