@@ -1,9 +1,13 @@
 package cardGame;
 
+import cardGameExceptions.InvalidCardException;
 import cardGameExceptions.StackOverflowException;
 import cardGameExceptions.StackUnderflowException;
 
 import java.util.Random;
+
+import static cardGame.WhotShapes.*;
+import static cardGame.WhotValues.*;
 
 public class DeckOfCards {
     private final Card[] cards;
@@ -59,4 +63,30 @@ public class DeckOfCards {
         }
     }
 
+    public void createFilledWhotCardDeck() {
+
+        for (WhotValues value : WhotValues.values()) {
+            for (WhotShapes shape: WhotShapes.values()) {
+                try {
+                    Card card = new Card(value, shape);
+                    if(value == TWENTY && shape == WHOT)
+                        for (int i = 0; i < 4; i++) {
+                            push(card);
+                        }
+                    push(card);
+                }catch(InvalidCardException ignored){};
+                };
+
+            }
+        }
+
+
+     public void createFilledPokerCardDeck() {
+        for(Faces face: Faces.values()){
+            for(Suits suit: Suits.values()){
+                Card card = new Card(face, suit);
+                push(card);
+            }
+        }
+    }
 }
