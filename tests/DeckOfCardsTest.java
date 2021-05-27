@@ -77,4 +77,12 @@ public class DeckOfCardsTest {
         assertTrue(deck.isFull());
         assertThrows(StackOverflowException.class, ()-> deck.push(card));
     }
+
+    @Test
+    void testThatDeckCanBeFilledUpWithCards(){
+        deck = new DeckOfCards(52);
+        assertEquals(0, deck.getNumberOfCardsInDeck());
+        deck.createFilledPokerCardDeck();
+        assertEquals(52, deck.getNumberOfCardsInDeck());
+    }
 }
