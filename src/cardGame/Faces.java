@@ -3,6 +3,4 @@ package cardGame;
 public enum Faces {
     ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
     EIGHT, NINE, TEN, JACK, KING, QUEEN,
-    ONE, ELEVEN, TWELVE, THIRTEEN, FOURTEEN, TWENTY;
-
 }
