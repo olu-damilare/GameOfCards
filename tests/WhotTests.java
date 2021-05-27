@@ -1,33 +1,30 @@
 import cardGame.*;
+import cardGameExceptions.InvalidCardException;
 import org.junit.jupiter.api.Test;
 
-import static cardGame.Faces.*;
-import static cardGame.Suits.*;
+import static cardGame.WhotShapes.*;
+import static cardGame.WhotValues.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WhotTests {
 
     @Test
-    void testThatCardWithFaceOneCanBeCreated(){
-        Faces[] faces = {ONE, TWO, THREE, FOUR, FIVE, SEVEN, EIGHT, TEN, ELEVEN, TWELVE, THIRTEEN, FOURTEEN, TWENTY};
-        Suits[] suits = {CIRCLE, TRIANGLE, SQUARE, CROSS, STAR, WHOT};
-        DeckOfCards deck = new DeckOfCards(50);
-        boolean invalidCrossOrSquareCard;
-        boolean invalidTwentyWhotCard;
-        boolean invalidStarCard;
-
-        for (Faces face : faces) {
-            for (Suits suit : suits) {
-                invalidTwentyWhotCard = (suit == WHOT && face != TWENTY) || (face == TWENTY && suit != WHOT);
-                invalidCrossOrSquareCard = (face == FOUR || face == TWELVE || face == EIGHT) && (suit == CROSS || suit == SQUARE);
-                invalidStarCard = (face == TEN || face == ELEVEN || face == TWELVE || face == THIRTEEN || face == FOURTEEN || face == TWENTY) &&
-                        (suit == STAR);
-
-                if (invalidCrossOrSquareCard || invalidStarCard || invalidTwentyWhotCard)
-                    continue;
-                Card card = new Card(face, suit);
-                deck.push(card);
-            }
+    void testThatCardOneCanBeCreated(){
+        try{
+            Card card = new Card(TEN, STAR);
+            assertEquals(TEN, card.getValue());
+        }catch(InvalidCardException e){
+            System.out.println(e.getMessage());
         }
+    }
+
+
+    @Test
+    void testThatCardWithFaceOneCanBeCreated(){
+        DeckOfCards deck = new DeckOfCards(54);
+        assertEquals(0, deck.getNumberOfCardsInDeck());
+        deck.createFilledWhotCardDeck();
+        assertEquals(54, deck.getNumberOfCardsInDeck());
 
     }
 }
